@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/devOwlish/az-devops-assigner/internal/azdevops"
 )
@@ -12,12 +13,22 @@ func main() {
 
 	// TODO: CLI/Env
 	matchPattern := "var"
-	userEmail := "test2@example.com"
+	// userEmail := "test2@example.com"
+	userEmail := "TestGroup"
 	userRole := "Reader"
+	var identity string
+	var err error
 
-	userID, err := azdevops.GetUserIDByEmail(userEmail)
+	if strings.Contains(userEmail, "@") {
+		identity, err = azdevops.GetUserIDByEmail(userEmail)
+		log.Printf("Assigning user with ID: %s\n", identity)
+	} else {
+		identity, err = azdevops.GetGroupIDByName("TestGroup")
+		log.Printf("Assigning group with ID: %s\n", identity)
+	}
+
 	if err != nil {
-		log.Fatalf("Error getting user ID: %s\n", err)
+		log.Fatalf("Error getting user or group ID: %s\n", err)
 	}
 
 	projects, err := azdevops.GetProjectIDs()
@@ -36,9 +47,9 @@ func main() {
 		}
 
 		for _, vg := range vgs {
-			fmt.Println("Project: ", project, "Variable Group: ", vg)
+			log.Printf("Project: %s, Variable Group: %d", project, vg)
 
-			err = azdevops.SetRoleAssignment(project, vg, userID, userRole)
+			err = azdevops.SetRoleAssignment(project, vg, identity, userRole)
 			if err != nil {
 				log.Fatalf("Error setting role assignment: %s\n", err)
 			}

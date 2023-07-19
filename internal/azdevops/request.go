@@ -3,6 +3,7 @@ package azdevops
 import (
 	"encoding/base64"
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -25,6 +26,8 @@ func SendRequest(route, urlType, project, method string, payload interface{}) (*
 	switch urlType {
 	case "project":
 		url = fmt.Sprintf(apiProject, credentials.Organization, project)
+	case "group":
+		url = fmt.Sprintf(apiUser, credentials.Organization)
 	case "user":
 		url = fmt.Sprintf(apiUser, credentials.Organization)
 		api = "5.0-preview.2"
@@ -34,7 +37,7 @@ func SendRequest(route, urlType, project, method string, payload interface{}) (*
 
 	url = url + "/_apis/" + route
 
-	fmt.Println(api, method, url)
+	log.Printf(">> [%s] %s -> %s", api, method, url)
 
 	client := resty.New()
 

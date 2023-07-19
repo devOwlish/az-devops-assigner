@@ -17,14 +17,13 @@ func GetVariableGroupsRolesAssignments(project string, id int) error {
 	if err != nil {
 		return err
 	}
-	// Process the response here
+
 	fmt.Println(response.String())
 
 	return nil
 }
 
 func SetRoleAssignment(project string, id int, userID, role string) error {
-	// PUT https://dev.azure.com/{organization}/_apis/securityroles/scopes/{scopeId}/roleassignments/resources/{resourceId}/{identityId}?api-version=7.0-preview.1
 	response, err := SendRequest(
 		fmt.Sprintf("securityroles/scopes/distributedtask.variablegroup/roleassignments/resources/%s$%d", project, id),
 		"base",
