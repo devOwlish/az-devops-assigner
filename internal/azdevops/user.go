@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+// userList is a struct for unmarshalling the response from the API;
+// we only need several fields from the response, so it doesn't make any sense to parse the whole response.
 type userList struct {
 	Members []struct {
 		ID   string `json:"id"`
@@ -14,6 +16,7 @@ type userList struct {
 	} `json:"members"`
 }
 
+// GetUserIDByEmail returns a user ID by email address
 func GetUserIDByEmail(email string) (string, error) {
 	users, err := SendRequest("userentitlements", "user", "", "GET", nil)
 	if err != nil {

@@ -5,18 +5,25 @@ import (
 	"os"
 )
 
+// Azure DevOps Personal Access Token Environment Variable name
 const azPAT = "AZ_DEVOPS_PAT"
+
+// Azure DevOps Organization Environment Variable name
 const azOrganization = "AZ_DEVOPS_ORG"
 
+// List of required environment variables
 var requiredEnvVariables = []string{azPAT, azOrganization}
 
+// Structure that holds the credentials
 type AzCredentials struct {
 	Token        string
 	Organization string
 }
 
+// Module-wide singleton of AzCredentials
 var credentials *AzCredentials
 
+// checks if the required environment variables are set and initializes the singleton instance
 func InitCredentials() {
 	if credentials != nil {
 		return
@@ -32,5 +39,4 @@ func InitCredentials() {
 		Token:        os.Getenv(azPAT),
 		Organization: os.Getenv(azOrganization),
 	}
-
 }
