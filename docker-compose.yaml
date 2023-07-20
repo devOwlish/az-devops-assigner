@@ -1,0 +1,15 @@
+services:
+  azassigner:
+    restart: no
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: azassigner
+    environment:
+      - AZ_DEVOPS_PAT
+      - AZ_DEVOPS_ORG
+    command: [
+      "-name", "test@example.com",
+      "-role", "Administrator",
+      "-pattern", "var",
+    ]
