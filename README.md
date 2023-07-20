@@ -4,13 +4,13 @@ The tool assigns user/group privileges on all existing ( or, at least, accessibl
 ## Requirements
 ### Environment Variables
 The following environment variables must be set:
-* AZ_DEVOPS_PAT: Azure DevOps Personal Access Token
-* AZ_DEVOPS_ORG: Azure DevOps Organization name
+* **AZ_DEVOPS_PAT**: Azure DevOps Personal Access Token
+* **AZ_DEVOPS_ORG**: Azure DevOps Organization name
 ### CLI Arguments
 The following CLI arguments must be passed:
-  * --name: User email or a group name you want give permissions to (test@example.com, TestGroup, etc.)
-  * --pattern string: Case-insensitive part of a variable group name to filter by (VarGroup, var, vaRG matches 'var' pattern))
-  * --role: Role you want to assign to the user or group (Administrator, Reader, etc.)
+  * **--name**: User email or a group name you want give permissions to (test@example.com, TestGroup, etc.)
+  * **--pattern**: Case-insensitive part of a variable group name to filter by (VarGroup, var, vaRG matches 'var' pattern))
+  * **--role**: Role you want to assign to the user or group (Administrator, Reader, etc.)
 ## Usage
 ```shell
 USAGE:
