@@ -10,7 +10,7 @@ import (
 	"github.com/microsoft/azure-devops-go-api/azuredevops/taskagent"
 )
 
-// newTaskAgentClient initializes a new task agent client
+// newTaskAgentClient initializes a new task agent client.
 func newTaskAgentClient() (taskagent.Client, error) {
 	var client taskagent.Client
 
@@ -30,13 +30,13 @@ func newTaskAgentClient() (taskagent.Client, error) {
 
 // GetVaribleGroupsIDByPattern returns a list of variable group IDs that match a pattern;
 // the pattern is case-insensitive and can be a part of the variable group name, thus
-// "varG", "VaRGroup", "My Variable Group" are matched by a pattern "var"
+// "varG", "VaRGroup", "My Variable Group" are matched by a pattern "var".
 func GetVaribleGroupsIDByPattern(project, pattern string) ([]int, error) {
 	var ids []int
 
 	client, err := newTaskAgentClient()
 	if err != nil {
-		return ids, fmt.Errorf("Failed to init coreClient: %w", err)
+		return ids, fmt.Errorf("failed to init coreClient: %w", err)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), contextTimeout)

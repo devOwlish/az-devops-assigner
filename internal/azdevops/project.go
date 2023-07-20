@@ -8,7 +8,7 @@ import (
 	"github.com/microsoft/azure-devops-go-api/azuredevops/core"
 )
 
-// newCoreClient initializes a new core client
+// newCoreClient initializes a new core client.
 func newCoreClient() (core.Client, error) {
 	var client core.Client
 
@@ -26,13 +26,13 @@ func newCoreClient() (core.Client, error) {
 	return client, nil
 }
 
-// GetProjectIDs returns a list of all project IDs
+// GetProjectIDs returns a list of all project IDs.
 func GetProjectIDs() ([]string, error) {
 	var projects []string
 
 	client, err := newCoreClient()
 	if err != nil {
-		return projects, fmt.Errorf("Failed to init coreClient: %w", err)
+		return projects, fmt.Errorf("failed to init coreClient: %w", err)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), contextTimeout)

@@ -10,24 +10,24 @@ import (
 )
 
 const (
-	// Default base API URL
+	// Default base API URL.
 	apiBase = "https://dev.azure.com/%s"
-	// Project-scoped base API URL
+	// Project-scoped base API URL.
 	apiProject = "https://dev.azure.com/%s/%s"
-	// User-scoped base API URL
+	// User-scoped base API URL.
 	apiUser = "https://vsaex.dev.azure.com/%s"
-	// Default context timeout for API requests
+	// Default context timeout for API requests.
 	contextTimeout = 10 * time.Second
-	// Default API version
+	// Default API version.
 	apiVersion = "7.1-preview.1"
 )
 
 // SendRequest constructs and sends a request to the Azure DevOps API;
-// can be used in case of a missing endpoint implementation in the Azure DevOps Go SDK
+// can be used in case of a missing endpoint implementation in the Azure DevOps Go SDK.
 func SendRequest(route, urlType, project, method string, payload interface{}) (*resty.Response, error) {
 	var (
 		url string
-		api string = apiVersion
+		api = apiVersion
 	)
 
 	switch urlType {

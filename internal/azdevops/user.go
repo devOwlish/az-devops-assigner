@@ -16,7 +16,7 @@ type userList struct {
 	} `json:"members"`
 }
 
-// GetUserIDByEmail returns a user ID by email address
+// GetUserIDByEmail returns a user ID by email address.
 func GetUserIDByEmail(email string) (string, error) {
 	users, err := SendRequest("userentitlements", "user", "", "GET", nil)
 	if err != nil {
